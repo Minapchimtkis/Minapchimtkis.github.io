@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#020812" />
+<title>שאלון אפיון פיננסי | מנפחים ת'כיס</title>
+<meta name="description" content="כמה אתה באמת מבין בכסף? שאלון אפיון פיננסי לבני נוער. מבוסס OECD ופיזה. 3 דקות." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="כמה אתה באמת מבין בכסף? | מנפחים ת'כיס" />
+<meta property="og:description" content="שאלון אפיון פיננסי לבני נוער. 3 דקות. מבוסס OECD ופיזה." />
+<meta property="og:image" content="https://static.wixstatic.com/media/b642ea_f56ee4778b714a6694ee08c6cf2539cf~mv2.jpg" />
+<meta property="og:locale" content="he_IL" />
+
+<link rel="icon" href="https://static.wixstatic.com/media/b642ea_f56ee4778b714a6694ee08c6cf2539cf~mv2.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --bg: #020812;
+  --bg-soft: #0a1428;
+  --yellow: #facc15;
+  --cyan: #38bdf8;
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: rgba(250, 204, 21, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  background-color: var(--bg);
+  font-family: 'Heebo', sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+body::-webkit-scrollbar { display: none; }
+body { -ms-overflow-style: none; scrollbar-width: none; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+/* רקע פיננסי עתידני */
+.fin-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(56,189,248,0.08), transparent 50%),
+    radial-gradient(circle at 80% 90%, rgba(250,204,21,0.06), transparent 50%);
+}
+
+.fin-bg svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* מסך כללי */
+.screen {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+.screen-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen-top {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 64px;
+}
+
+.container {
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+}
+
+.container-q {
+  max-width: 440px;
+  width: 100%;
+}
+
+/* באדג' מותג */
+.brand-badge {
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background-color: rgba(2, 8, 18, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  margin: 8px 0 40px;
+}
+.brand-badge .cyan { color: var(--cyan); }
+.brand-badge .yellow { color: var(--yellow); }
+
+/* כותרת */
+.hero-title {
+  font-size: clamp(32px, 9vw, 48px);
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.hero-title .cyan { color: var(--cyan); }
+.hero-title .yellow { color: var(--yellow); }
+
+.hero-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin: 0 8px 12px;
+}
+
+.hero-tagline {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cyan);
+  margin-bottom: 80px;
+}
+
+/* כפתורים */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 900;
+  transition: transform 0.15s ease;
+  font-family: inherit;
+}
+
+.btn:active { transform: scale(0.98); }
+
+.btn-primary {
+  background-color: var(--yellow);
+  color: var(--bg);
+  box-shadow: 0 8px 30px rgba(250,204,21,0.25);
+}
+
+.btn-secondary {
+  background-color: rgba(2, 8, 18, 0.5);
+  color: var(--cyan);
+  font-weight: 700;
+  border: 1.5px solid var(--cyan);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.btn-whatsapp {
+  background-color: #25D366;
+  color: #fff;
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.3);
+}
+
+.btn-reset {
+  background-color: transparent;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  width: 100%;
+}
+
+.btn-stack > * + * { margin-top: 18px; }
+
+/* דיסקליימר תחתון */
+.disclaimer {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 8px 20px 24px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* מסך שאלה */
+.q-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.q-domain {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--yellow);
+}
+
+.q-counter {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.progress-track {
+  height: 6px;
+  border-radius: 999px;
+  background-color: rgba(255,255,255,0.08);
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--yellow);
+  box-shadow: 0 0 12px rgba(250, 204, 21, 0.5);
+  transition: width 0.5s ease;
+}
+
+.q-text {
+  font-size: clamp(22px, 6vw, 30px);
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 32px;
+}
+
+.answer-btn {
+  display: block;
+  width: 100%;
+  text-align: right;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: rgba(10, 20, 40, 0.55);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.5;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.answer-btn:hover {
+  border-color: var(--yellow);
+  transform: translateY(-1px);
+}
+
+.answer-btn:active { transform: scale(0.98); }
+
+.answer-stack > * + * { margin-top: 16px; }
+
+.reset-link {
+  display: block;
+  margin: 32px auto 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* מסך תוצאה */
+.result-emoji {
+  font-size: 72px;
+  margin-bottom: 16px;
+}
+
+.result-label {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.result-title {
+  font-size: 48px;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.result-score {
+  display: inline-block;
+  padding: 4px 16px;
+  border-radius: 999px;
+  background-color: rgba(255,255,255,0.05);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.result-card {
+  padding: 20px;
+  border-radius: 16px;
+  background-color: rgba(10, 20, 40, 0.55);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.result-card-tip {
+  border: 1px solid var(--yellow);
+}
+
+.tip-label {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  font-weight: 900;
+  color: var(--yellow);
+  margin-bottom: 8px;
+}
+
+.result-text {
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.closing {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cyan);
+  margin: 0 8px 32px;
+}
+
+/* פולבק טעינה */
+#root:empty::before {
+  content: '⚡';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--yellow);
+  font-size: 48px;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* אנימציית כניסה */
+.fade-in {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<!-- רקע פיננסי -->
+<div class="fin-bg">
+<svg preserveAspectRatio="xMidYMid slice" viewBox="0 0 400 800" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.08"/>
+</pattern>
+<linearGradient id="l1" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#38bdf8" stop-opacity="0"/>
+<stop offset="50%" stop-color="#38bdf8" stop-opacity="0.5"/>
+<stop offset="100%" stop-color="#facc15" stop-opacity="0.5"/>
+</linearGradient>
+<linearGradient id="a1" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" stop-color="#38bdf8" stop-opacity="0.15"/>
+<stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+</linearGradient>
+</defs>
+<rect width="100%" height="100%" fill="url(#g)"/>
+<path d="M 0,650 Q 60,620 100,580 T 200,500 T 320,380 T 400,300 L 400,800 L 0,800 Z" fill="url(#a1)" opacity="0.6"/>
+<path d="M 0,650 Q 60,620 100,580 T 200,500 T 320,380 T 400,300" fill="none" stroke="url(#l1)" stroke-width="1.5"/>
+<path d="M 0,720 Q 80,700 140,660 T 260,580 T 400,450" fill="none" stroke="#facc15" stroke-width="1" stroke-dasharray="4 4" opacity="0.2"/>
+<g opacity="0.18">
+<line x1="60" y1="180" x2="60" y2="240" stroke="#38bdf8" stroke-width="1"/>
+<rect x="56" y="195" width="8" height="30" fill="#38bdf8"/>
+<line x1="110" y1="220" x2="110" y2="290" stroke="#facc15" stroke-width="1"/>
+<rect x="106" y="235" width="8" height="40" fill="none" stroke="#facc15" stroke-width="1.5"/>
+<line x1="320" y1="450" x2="320" y2="510" stroke="#38bdf8" stroke-width="1"/>
+<rect x="316" y="465" width="8" height="35" fill="#38bdf8"/>
+<line x1="370" y1="500" x2="370" y2="570" stroke="#facc15" stroke-width="1"/>
+<rect x="366" y="515" width="8" height="40" fill="#facc15"/>
+</g>
+<circle cx="200" cy="500" r="2.5" fill="#38bdf8" opacity="0.4"/>
+<circle cx="320" cy="380" r="2.5" fill="#38bdf8" opacity="0.4"/>
+<g font-family="monospace" font-weight="700">
+<text x="40" y="120" fill="#38bdf8" font-size="14" opacity="0.12">₪</text>
+<text x="350" y="170" fill="#facc15" font-size="16" opacity="0.1">$</text>
+<text x="80" y="420" fill="#facc15" font-size="13" opacity="0.1">₪</text>
+<text x="280" y="680" fill="#38bdf8" font-size="14" opacity="0.1">€</text>
+</g>
+<line x1="0" y1="400" x2="400" y2="400" stroke="#38bdf8" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.15"/>
+<g font-family="monospace" font-size="9" fill="#38bdf8" opacity="0.12">
+<text x="20" y="60">+24.7%</text>
+<text x="300" y="100">1,250</text>
+<text x="30" y="380">RSI 68</text>
+<text x="310" y="700">+5.2%</text>
+</g>
+</svg>
+</div>
+
+<div id="root"></div>
+
+<script>
+// ============================================================
+// בנק שאלות
+// ============================================================
+const FULL_QUIZ = [
+  { domain: "כסף ועסקאות", question: "קנית אוזניות במחיר מודבק של 300 ש״ח. עם המע״מ (17%), כמה תשלם בקופה?", answers: [
+    { text: "300 ש״ח", score: 0 }, { text: "351 ש״ח", score: 2 },
+    { text: "317 ש״ח", score: 1 }, { text: "לא יודע/ת לחשב", score: 0 }]},
+  { domain: "כסף ועסקאות", question: "אתה רוצה לקנות זוג נעליים חדש. מה תעשה קודם?", answers: [
+    { text: "אקנה בחנות הראשונה שאמצא", score: 0 },
+    { text: "אשווה מחיר בין שתי חנויות ואתר אונליין", score: 2 },
+    { text: "אקנה איפה שחבר המליץ", score: 1 },
+    { text: "אקנה את הכי יקר, בטח האיכותי ביותר", score: 0 }]},
+  { domain: "כסף ועסקאות", question: "משכת 100 ש״ח בכספומט של בנק אחר, ולקחו ממך 7 ש״ח נוספים. למה?", answers: [
+    { text: "טעות של הבנק, מגיע לי החזר", score: 0 },
+    { text: "זאת עמלה על משיכה מבנק שאינו שלי", score: 2 },
+    { text: "זה מס למדינה", score: 0 },
+    { text: "לא ידעתי שיש דבר כזה", score: 1 }]},
+  { domain: "כסף ועסקאות", question: "סבא נתן לך 200 ש״ח ליום הולדת. מה תעשה?", answers: [
+    { text: "אקנה משהו שבא לי עכשיו", score: 0 },
+    { text: "אחסוך הכול בצד", score: 1 },
+    { text: "אחלק: חלק לחיסכון, חלק להוצאה", score: 2 },
+    { text: "אתן להורים לשמור שלא אבזבז", score: 1 }]},
+  { domain: "תכנון וניהול כספים", question: "מה זה בעצם תקציב?", answers: [
+    { text: "הכסף שיש לי בארנק כרגע", score: 0 },
+    { text: "תוכנית של ההכנסות וההוצאות שלי", score: 2 },
+    { text: "הסכום שמותר לי לבזבז בחודש", score: 1 },
+    { text: "מילה של מבוגרים, לא רלוונטית לי", score: 0 }]},
+  { domain: "תכנון וניהול כספים", question: "נשארו לך 50 ש״ח, ויש עוד שבועיים לסוף החודש. מה תעשה?", answers: [
+    { text: "אבזבז עכשיו, מחר כבר נדאג", score: 0 },
+    { text: "אחלק לשבועיים ואצמצם הוצאות", score: 2 },
+    { text: "אבקש מההורים בלי לחשוב יותר מדי", score: 0 },
+    { text: "לא אקנה כלום בכלל", score: 1 }]},
+  { domain: "תכנון וניהול כספים", question: "מה הכי משפר חיסכון לטווח ארוך?", answers: [
+    { text: "לחסוך רק ממה שנשאר בסוף החודש", score: 0 },
+    { text: "להפריש סכום קבוע מיד כשהכסף נכנס", score: 2 },
+    { text: "לחסוך רק כשמרגישים שיש מספיק", score: 1 },
+    { text: "עדיף ליהנות עכשיו, חיסכון זה לזקנים", score: 0 }]},
+  { domain: "תכנון וניהול כספים", question: "אתה רוצה לקנות משהו ב 1,200 ש״ח. איך תגיע לזה?", answers: [
+    { text: "אחכה ליום שיהיה לי, אולי פעם", score: 0 },
+    { text: "אשים 100 ש״ח בצד כל חודש למשך שנה", score: 2 },
+    { text: "אלווה מחבר ואחזיר אחר כך", score: 0 },
+    { text: "אקנה עכשיו בתשלומים ואסתדר", score: 1 }]},
+  { domain: "סיכון ותגמול", question: "שמת 1,000 ש״ח בחיסכון עם ריבית של 5% בשנה. כמה יהיה לך אחרי שנה?", answers: [
+    { text: "1,000 ש״ח, ריבית זה רעיון בלבד", score: 0 },
+    { text: "1,050 ש״ח", score: 2 },
+    { text: "1,500 ש״ח", score: 0 },
+    { text: "לא יודע/ת איך מחשבים", score: 1 }]},
+  { domain: "סיכון ותגמול", question: "מישהו מציע לך השקעה עם ״30% רווח בחודש, מובטח״. מה זה?", answers: [
+    { text: "הזדמנות מטורפת, חייבים להיכנס", score: 0 },
+    { text: "דבר נורמלי בעולם ההשקעות", score: 0 },
+    { text: "סימן ברור להונאה או סיכון קיצוני", score: 2 },
+    { text: "צריך לבדוק לעומק לפני שמחליטים", score: 1 }]},
+  { domain: "סיכון ותגמול", question: "מה עדיף לעשות עם כסף שמיועד להשקעה?", answers: [
+    { text: "לשים הכול במניה אחת חזקה שאני מכיר", score: 0 },
+    { text: "לפזר בין כמה נכסים שונים", score: 2 },
+    { text: "לשים הכול בקריפטו שכולם מדברים עליו", score: 0 },
+    { text: "לשמור הכול במזומן בבית", score: 1 }]},
+  { domain: "סיכון ותגמול", question: "חבר אומר לך ״תכניס את כל החסכונות שלך למניה הזאת, היא תעלה 100%״. מה תעשה?", answers: [
+    { text: "אכניס הכול, אני סומך עליו", score: 0 },
+    { text: "אשאל אותו מה המקור, אבדוק לבד לפני", score: 2 },
+    { text: "אכניס סכום קטן רק לנסות", score: 1 },
+    { text: "לא משקיע באף דבר אף פעם", score: 1 }]},
+  { domain: "הסביבה הפיננסית", question: "אינפלואנסר אהוב עליך ממליץ על מוצר. מה הצעד הראשון שלך?", answers: [
+    { text: "אקנה מיד, אני סומך עליו", score: 0 },
+    { text: "אזכור שזה כנראה תוכן ממומן ואבדוק לבד", score: 2 },
+    { text: "אקנה רק אם המחיר נראה לי הגיוני", score: 1 },
+    { text: "אני לא קונה דברים מאינפלואנסרים בכלל", score: 1 }]},
+  { domain: "הסביבה הפיננסית", question: "כל הכיתה קנתה טלפון חדש ב 4,000 ש״ח. מה תעשה?", answers: [
+    { text: "אקנה גם, לא בא לי להישאר מאחור", score: 0 },
+    { text: "אשאל את עצמי אם אני באמת צריך אותו עכשיו", score: 2 },
+    { text: "אבקש מההורים שיקנו לי", score: 0 },
+    { text: "אחסוך בצד ואחליט בעצמי בעוד כמה חודשים", score: 1 }]},
+  { domain: "הסביבה הפיננסית", question: "איפה הכי טוב ללמוד על כסף?", answers: [
+    { text: "מסרטוני ״איך להתעשר ב 30 יום״", score: 0 },
+    { text: "ממקורות מקצועיים, ספרים, פלטפורמות מבוססות", score: 2 },
+    { text: "מחברים שמדברים על זה הרבה", score: 1 },
+    { text: "מתחילים ומקווים שיסתדר", score: 0 }]},
+  { domain: "הסביבה הפיננסית", question: "קנית אוזניות, ואחרי שבוע הן הפסיקו לעבוד. מה הזכות שלך?", answers: [
+    { text: "כבר קניתי, אין מה לעשות", score: 0 },
+    { text: "מגיע לי החזר או החלפה לפי חוק הגנת הצרכן", score: 2 },
+    { text: "תלוי אם החנות מסכימה", score: 1 },
+    { text: "לא יודע/ת מה הזכויות שלי", score: 0 }]}
+];
+
+const SHORT_QUIZ = [FULL_QUIZ[3], FULL_QUIZ[4], FULL_QUIZ[6], FULL_QUIZ[9], FULL_QUIZ[13]];
+
+// ============================================================
+// ערבול
+// ============================================================
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// ============================================================
+// רמות
+// ============================================================
+function getLevel(score, max) {
+  const p = (score / max) * 100;
+  if (p <= 33) return {
+    title: "מתחיל/ה", emoji: "🌱", color: "#38bdf8",
+    description: "אתה בתחילת המסע הפיננסי שלך, וזה הזמן המושלם להניח את היסודות. הידע הבסיסי הוא 80% מההצלחה לאורך זמן.",
+    tip: "התחל לרשום במשך שבועיים כל שקל שאתה מוציא. רק לרשום, בלי לשפוט. בסוף השבועיים תופתע ממה שתגלה על עצמך.",
+    closing: "כל מי שהיום שולט בכסף שלו, התחיל בדיוק מהמקום שאתה נמצא בו עכשיו. ✨"
+  };
+  if (p <= 66) return {
+    title: "בינוני/ת", emoji: "⚡", color: "#facc15",
+    description: "יש לך אינטואיציה פיננסית בריאה, וזה גדול. עכשיו הזמן להפוך אותה לשיטה קבועה במקום החלטות נקודתיות.",
+    tip: "אמץ את כלל 50/30/20: 50% להוצאות חובה, 30% להוצאות שאתה אוהב, 20% לחיסכון. תפעיל את זה החודש.",
+    closing: "אתה במרחק החלטה אחת מלשפר את העתיד הפיננסי שלך. 🚀"
+  };
+  return {
+    title: "מתקדם/ת", emoji: "👑", color: "#facc15",
+    description: "אתה כבר חושב כמו בן אדם שמנהל את הכסף שלו ברצינות. השלב הבא הוא הפיכת ידע לפעולה לאורך זמן.",
+    tip: "תתחיל לקרוא על קרנות מחקות, ריבית דריבית ופיזור השקעות. הזמן כבר עובד עבורך, נצל את זה.",
+    closing: "השליטה הפיננסית שלך תפתח לך דלתות שאחרים לא יראו. 🏆"
+  };
+}
+
+// ============================================================
+// אפליקציה
+// ============================================================
+const state = {
+  mode: null,
+  currentQ: 0,
+  answers: [],
+  quiz: []
+};
+
+const root = document.getElementById('root');
+
+function startQuiz(mode) {
+  const source = mode === 'full' ? FULL_QUIZ : SHORT_QUIZ;
+  state.mode = mode;
+  state.currentQ = 0;
+  state.answers = [];
+  state.quiz = source.map(q => ({ ...q, answers: shuffle(q.answers) }));
+  render();
+}
+
+function reset() {
+  state.mode = null;
+  state.currentQ = 0;
+  state.answers = [];
+  state.quiz = [];
+  render();
+}
+
+function answerQ(score) {
+  state.answers.push(score);
+  if (state.currentQ + 1 < state.quiz.length) {
+    state.currentQ++;
+  } else {
+    state.currentQ = state.quiz.length;
+  }
+  render();
+}
+
+function shareWA() {
+  const total = state.answers.reduce((a, b) => a + b, 0);
+  const max = state.quiz.length * 2;
+  const level = getLevel(total, max);
+  const text = `עשיתי עכשיו שאלון אפיון פיננסי בעמוד הפיננסי לנוער בישראל, מנפחים ת'כיס 💸\n\nיצא לי: ${level.title}\nציון: ${total} מתוך ${max}\n\nנסה גם, רק 3 דקות 👇\n${window.location.href}`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function escapeHTML(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function render() {
+  // ===== מסך פתיחה =====
+  if (!state.mode) {
+    root.innerHTML = `
+      <div class="screen fade-in">
+        <div class="screen-top">
+          <div class="container">
+            <div class="brand-badge">
+              <span class="cyan">מנפחים</span><span class="yellow"> ת'כיס</span>
+            </div>
+            <h1 class="hero-title">
+              <span class="cyan">כמה אתה באמת</span><br>
+              <span class="yellow">מבין בכסף?</span>
+            </h1>
+            <p class="hero-tagline">3 דקות. בלי שיפוטיות. רק שיקוף.</p>
+            <div class="btn-stack">
+              <button class="btn btn-primary" onclick="startQuiz('full')">גרסה מלאה · 16 שאלות</button>
+              <button class="btn btn-secondary" onclick="startQuiz('short')">מיני שאלון · 5 שאלות</button>
+            </div>
+          </div>
+        </div>
+        <div class="disclaimer">תוכן חינוכי בלבד. אינו מהווה ייעוץ פיננסי או השקעות.</div>
+      </div>`;
+    return;
+  }
+
+  // ===== מסך תוצאה =====
+  if (state.currentQ >= state.quiz.length) {
+    const total = state.answers.reduce((a, b) => a + b, 0);
+    const max = state.quiz.length * 2;
+    const level = getLevel(total, max);
+    root.innerHTML = `
+      <div class="screen fade-in" style="background-image: radial-gradient(circle at 50% 0%, ${level.color}22, transparent 60%);">
+        <div class="screen-center">
+          <div class="container-q">
+            <div style="text-align: center; margin-bottom: 32px;">
+              <div class="result-emoji">${level.emoji}</div>
+              <div class="result-label">הרמה הפיננסית שלך</div>
+              <h2 class="result-title" style="color: ${level.color};">${escapeHTML(level.title)}</h2>
+              <div class="result-score">${total} מתוך ${max} נקודות</div>
+            </div>
+            <div class="result-card">
+              <p class="result-text">${escapeHTML(level.description)}</p>
+            </div>
+            <div class="result-card result-card-tip" style="border-color: ${level.color}80;">
+              <div class="tip-label" style="color: ${level.color};">⚡ טיפ פרקטי בשבילך</div>
+              <p class="result-text">${escapeHTML(level.tip)}</p>
+            </div>
+            <p class="closing">${escapeHTML(level.closing)}</p>
+            <div class="btn-stack">
+              <button class="btn btn-whatsapp" onclick="shareWA()">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.693.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                שתף בוואטסאפ
+              </button>
+              <button class="btn-reset" onclick="reset()">חזרה להתחלה</button>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    return;
+  }
+
+  // ===== מסך שאלה =====
+  const q = state.quiz[state.currentQ];
+  const progress = ((state.currentQ + 1) / state.quiz.length) * 100;
+  root.innerHTML = `
+    <div class="screen fade-in" key="${state.currentQ}">
+      <div class="screen-center">
+        <div class="container-q">
+          <div class="q-header">
+            <span class="q-domain">${escapeHTML(q.domain)}</span>
+            <span class="q-counter">${state.currentQ + 1} / ${state.quiz.length}</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-bar" style="width: ${progress}%;"></div>
+          </div>
+          <h2 class="q-text">${escapeHTML(q.question)}</h2>
+          <div class="answer-stack">
+            ${q.answers.map((a, i) => `<button class="answer-btn" onclick="answerQ(${a.score})">${escapeHTML(a.text)}</button>`).join('')}
+          </div>
+          <button class="reset-link" onclick="reset()">התחל מחדש</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ============================================================
+// הגנות
+// ============================================================
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (e.keyCode === 123) e.preventDefault();
+  if (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) e.preventDefault();
+  if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83)) e.preventDefault();
+});
+
+console.log('%c⚠️ עצור!', 'color: #facc15; font-size: 32px; font-weight: 900;');
+console.log('%cזה אזור למפתחים. אם מישהו אמר לך להעתיק כאן משהו, זה ניסיון הונאה.', 'color: #38bdf8; font-size: 14px;');
+console.log("%cמנפחים ת'כיס · החינוך הפיננסי שלך מתחיל כאן.", 'color: #38bdf8; font-size: 14px;');
+
+// התחל
+render();
+</script>
+</body>
+</html>
